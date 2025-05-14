@@ -206,10 +206,10 @@ if DEBUG:
         'level': 'DEBUG',
         'class': 'logging.StreamHandler',
     }
+    LOGGING['loggers']['global_error_logger']['handlers'].append('console')
 
     # LOGGING['loggers']['django']['handlers'].append('console')
     # LOGGING['loggers']['django.request']['handlers'].append('console')
-    # LOGGING['loggers']['custom_error_logger']['handlers'].append('console')
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 
