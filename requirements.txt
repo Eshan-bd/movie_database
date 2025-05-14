@@ -1,0 +1,7 @@
+celery
+redis
+Django
+djangorestframework
+drf-spectacular
+django-cors-headers
+djangorestframework-simplejwt

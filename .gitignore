@@ -1,0 +1,43 @@
+# Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+env/
+venv/
+*.egg-info/
+
+# Django
+*.log
+*.pot
+*.pyc
+*.sqlite3
+db.sqlite3
+/media
+*.coverage
+*.cache
+*.tox
+*.nox
+*.coverage
+*.hypothesis
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# pytest
+.cache/
+
+# Python packaging
+*.egg
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Migration files
+*/migrations
