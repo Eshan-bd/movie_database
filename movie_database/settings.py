@@ -136,6 +136,16 @@ TEMPLATES = [
     },
 ]
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',  # Redis cache backend
+        'LOCATION': os.getenv('REDIS_LOCATION'),    # Redis server and database index (db 1 in this case)
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        }
+    }
+}
+CACHE_TIMEOUT = os.getenv("CACHE_TIMEOUT")
 
 def location(f):
     return os.path.join(ROOT_DIR, f)

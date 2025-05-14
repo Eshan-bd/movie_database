@@ -6,3 +6,4 @@ drf-spectacular
 django-cors-headers
 djangorestframework-simplejwt
 IMDbPY
+django-redis
