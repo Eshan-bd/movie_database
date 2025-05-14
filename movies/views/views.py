@@ -27,20 +27,19 @@ class MovieDetailsView(BaseAPIView):
         ia = IMDb()
 
         try:
-            # Fetch the movie by its ID
             movie = get_object_or_404(Movie, id=pk)
-            movie = ia.get_movie(movie.imdb_id)
+            imdb_data = ia.get_movie(movie.imdb_id)
 
             # Get movie details
             movie_details = {
-                "description": movie.get('plot', ['N/A'])[0],  # Get plot description
-                "releaseDate": movie.get('year', 'N/A'),
-                "director": [director['name'] for director in movie.get('directors', [])],
-                "cast": [actor['name'] for actor in movie.get('cast', [])],
-                "runtime": movie.get('runtime', ['N/A'])[0],  # In minutes
-                "rating": movie.get('rating', 'N/A'),
-                "trailerUrl": None,  # IMDbPY does not provide trailer URL directly
-                "reviews": []  # IMDbPY does not provide review excerpts directly
+                "description": imdb_data.get('plot', ['N/A'])[0],  # Get plot description
+                "releaseDate": imdb_data.get('year', 'N/A'),
+                "director": [director['name'] for director in imdb_data.get('directors', [])],
+                "cast": [actor['name'] for actor in imdb_data.get('cast', [])][:5],  # Get top 5 cast members
+                "runtime": imdb_data.get('runtime', ['N/A'])[0],  # In minutes
+                "rating": imdb_data.get('rating', 'N/A'),
+                "trailerUrl": imdb_data.get('videos')[0] if isinstance(imdb_data.get('videos'), list)
+                                                            and imdb_data.get('videos') else None,  # IMDbPY does not provide trailer URL directly
             }
 
             return Response(movie_details, status=status.HTTP_200_OK)
