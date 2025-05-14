@@ -46,3 +46,4 @@ class Movie(BaseModel):
     title = models.CharField(max_length=255)
     genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
     poster = models.URLField()
+    imdb_id = models.CharField(max_length=20)
